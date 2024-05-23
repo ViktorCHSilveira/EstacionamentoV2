@@ -3,11 +3,14 @@ using Application.Vehicle;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers {
-    public class VehicleController : BaseApiController {
+namespace API.Controllers.Vehicle
+{
+    public class VehicleController : BaseApiController
+    {
 
         [HttpGet("{id}")]
-        public async Task<ActionResult> FindById(Guid id) {
+        public async Task<ActionResult> FindById(Guid id)
+        {
 
             var vehicle = Mediator.Send(new Details.Query { Id = id });
 
@@ -16,7 +19,8 @@ namespace API.Controllers {
 
 
         [HttpGet]
-        public async Task<ActionResult> FindAll() {
+        public async Task<ActionResult> FindAll()
+        {
 
             var vehicle = Mediator.Send(new List.Query());
 
@@ -25,7 +29,8 @@ namespace API.Controllers {
 
 
         [HttpPost]
-        public async Task<IActionResult> Create(Vehicle vehicle) {
+        public async Task<IActionResult> Create(Domain.Entities.Vehicle vehicle)
+        {
 
             if (vehicle == null) return BadRequest();
 
@@ -36,7 +41,8 @@ namespace API.Controllers {
 
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Uptade(Guid id, Vehicle obj) {
+        public async Task<ActionResult> Uptade(Guid id, Domain.Entities.Vehicle obj)
+        {
 
             if (obj == null) return BadRequest();
 
@@ -47,12 +53,13 @@ namespace API.Controllers {
 
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(Guid id) {
+        public async Task<ActionResult> Delete(Guid id)
+        {
 
             await Mediator.Send(new Delete.Command { Id = id });
 
             return Ok();
         }
-        
+
     }
 }

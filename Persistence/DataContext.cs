@@ -12,6 +12,7 @@ namespace Persistence {
 
         public DbSet<Establishment> Establishment { get; set; }
         public DbSet<Vehicle> Vehicle { get; set; }
+        public DbSet<ParkingFloor> ParkingFloor { get; set; }
 
     }
 }
